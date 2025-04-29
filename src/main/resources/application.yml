@@ -1,0 +1,27 @@
+quarkus:
+  datasource:
+    devservices:
+      username: postgres
+      password: quarkus
+      port: 5432
+      image-name: postgres:15.1-alpine3.16
+      db-name: quarkusDEVDB
+      enabled: true
+    db-version: 15.1
+    username: postgres
+    password: quarkus
+    db-kind: postgresql
+    reactive:
+      url: vertx-reactive:postgresql://localhost:5432/quarkusDEVDB?loggerLevel=OFF
+      max-size: 20
+  hibernate-orm:
+    sql-load-script: import.sql
+    log:
+      format-sql: true
+      sql: true
+    database:
+      generation:
+        - drop-and-create
+  package:
+    jar:
+      type: uber-jar
