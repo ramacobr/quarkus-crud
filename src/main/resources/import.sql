@@ -2,4 +2,10 @@ INSERT INTO product (price,id,description,name) VALUES (12.21,1,'caneca de café
 INSERT INTO product (price,id,description,name) VALUES (13.21,2,'algodão em bolas','algodão');
 INSERT INTO product (price,id,description,name) VALUES (14.21,3,'aveia em flocos','aveia');
 INSERT INTO product (price,id,description,name) VALUES (15.21,4,'açucar mascavo','açucar');
-alter sequence product_SEQ restart with 5;
+INSERT INTO product (price,id,description,name) VALUES (13.24,5,'arroz branco','arroz');
+INSERT INTO product (price,id,description,name) VALUES (112.21,6,'Canela em pó','canela');
+INSERT INTO product (price,id,description,name) VALUES (15.22,7,'Feijão carioca','feijão');
+INSERT INTO product (price,id,description,name) VALUES (55.29,8,'Rabanete japonês','rabanete');
+INSERT INTO product (price,id,description,name) VALUES (35.42,9,'Pimentão amarelo','pimentão');
+INSERT INTO product (price,id,description,name) VALUES (25.82,10,'Melão pele de sapo','melão');
+alter sequence product_SEQ restart with 10;
