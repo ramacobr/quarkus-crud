@@ -25,3 +25,29 @@ quarkus:
   package:
     jar:
       type: uber-jar
+  http:
+    cors:
+      enabled: true
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      headers: accept,authorization,content-type,x-requested-with,cache-control
+      origins:
+        - http://localhost:3000
+dev:
+  quarkus:
+    http:
+      cors:
+        enabled: true
+        methods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - OPTIONS
+        headers: accept,authorization,content-type,x-requested-with
+        origins:
+          - http://localhost:3000
