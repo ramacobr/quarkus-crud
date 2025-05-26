@@ -1,20 +1,5 @@
 quarkus:
-  keycloak:
-    devservices:
-      enabled: true
-      keycloak-x-image: true
-      image-name: quay.io/keycloak/keycloak:26.2.4
-      shared: true
-      port: 8282
-      service-name: keycloak
   datasource:
-    devservices:
-      enabled: true
-      image-name: postgres:15.1-alpine3.16
-      db-name: quarkusDEVDB
-      port: 5432
-      username: postgres
-      password: quarkus
     db-version: 15.1
     username: postgres
     password: quarkus
@@ -33,22 +18,25 @@ quarkus:
   package:
     jar:
       type: uber-jar
-  http:
-    cors:
-      enabled: true
-      methods:
-        - GET
-        - POST
-        - PUT
-        - DELETE
-        - OPTIONS
-      headers: accept,authorization,content-type,x-requested-with,cache-control
-      origins:
-        - '*'
-        - http://localhost:8080/
-        - http://localhost:3000
-dev:
+"%dev":
   quarkus:
+    keycloak:
+      devservices:
+        enabled: true
+        keycloak-x-image: true
+        image-name: quay.io/keycloak/keycloak:26.2.4
+        shared: true
+        port: 8282
+        service-name: keycloak
+        show-logs: true
+    datasource:
+      devservices:
+        enabled: true
+        image-name: postgres:15.1-alpine3.16
+        db-name: quarkusDEVDB
+        port: 5432
+        username: postgres
+        password: quarkus
     http:
       cors:
         enabled: true
