@@ -1,12 +1,20 @@
 quarkus:
+  keycloak:
+    devservices:
+      enabled: true
+      keycloak-x-image: true
+      image-name: quay.io/keycloak/keycloak:26.2.4
+      shared: true
+      port: 8282
+      service-name: keycloak
   datasource:
     devservices:
-      username: postgres
-      password: quarkus
-      port: 5432
+      enabled: true
       image-name: postgres:15.1-alpine3.16
       db-name: quarkusDEVDB
-      enabled: true
+      port: 5432
+      username: postgres
+      password: quarkus
     db-version: 15.1
     username: postgres
     password: quarkus
@@ -36,6 +44,8 @@ quarkus:
         - OPTIONS
       headers: accept,authorization,content-type,x-requested-with,cache-control
       origins:
+        - '*'
+        - http://localhost:8080/
         - http://localhost:3000
 dev:
   quarkus:
@@ -48,6 +58,8 @@ dev:
           - PUT
           - DELETE
           - OPTIONS
-        headers: accept,authorization,content-type,x-requested-with
+        headers: accept,authorization,content-type,x-requested-with,cache-control
         origins:
+          - '*'
+          - http://localhost:8080/
           - http://localhost:3000
