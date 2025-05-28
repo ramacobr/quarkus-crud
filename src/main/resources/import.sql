@@ -8,4 +8,4 @@ INSERT INTO product (price,id,description,name) VALUES (15.22,7,'Feijão carioca
 INSERT INTO product (price,id,description,name) VALUES (55.29,8,'Rabanete japonês','rabanete');
 INSERT INTO product (price,id,description,name) VALUES (35.42,9,'Pimentão amarelo','pimentão');
 INSERT INTO product (price,id,description,name) VALUES (25.82,10,'Melão pele de sapo','melão');
-alter sequence product_SEQ restart with 10;
+alter sequence product_SEQ restart with 11;
