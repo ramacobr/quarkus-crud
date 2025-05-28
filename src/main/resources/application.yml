@@ -1,53 +1,50 @@
 quarkus:
   datasource:
     db-version: 15.1
-    username: postgres
-    password: quarkus
     db-kind: postgresql
+    devservices:
+      enabled: true
+      image-name: postgres:15.1-alpine3.16
+      db-name: quarkusDEVDB
+      port: 5432
+      password: quarkus
+      username: postgres
+    password: quarkus
+    username: postgres
     reactive:
       url: vertx-reactive:postgresql://localhost:5432/quarkusDEVDB?loggerLevel=OFF
       max-size: 20
+  http:
+    cors:
+      enabled: true
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      headers: accept,authorization,content-type,x-requested-with,cache-control
+      origins:
+        - '*'
+        - http://localhost:8080/
+        - http://localhost:3000
   hibernate-orm:
-    sql-load-script: import.sql
-    log:
-      format-sql: true
-      sql: true
     database:
       generation:
         - drop-and-create
+    log:
+      format-sql: true
+      sql: true
+    sql-load-script: import.sql
+  keycloak:
+    devservices:
+      enabled: true
+      keycloak-x-image: true
+      image-name: quay.io/keycloak/keycloak:26.2.4
+      shared: true
+      port: 8282
+      service-name: keycloak
+      show-logs: true
   package:
     jar:
       type: uber-jar
-"%dev":
-  quarkus:
-    keycloak:
-      devservices:
-        enabled: true
-        keycloak-x-image: true
-        image-name: quay.io/keycloak/keycloak:26.2.4
-        shared: true
-        port: 8282
-        service-name: keycloak
-        show-logs: true
-    datasource:
-      devservices:
-        enabled: true
-        image-name: postgres:15.1-alpine3.16
-        db-name: quarkusDEVDB
-        port: 5432
-        username: postgres
-        password: quarkus
-    http:
-      cors:
-        enabled: true
-        methods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - OPTIONS
-        headers: accept,authorization,content-type,x-requested-with,cache-control
-        origins:
-          - '*'
-          - http://localhost:8080/
-          - http://localhost:3000
