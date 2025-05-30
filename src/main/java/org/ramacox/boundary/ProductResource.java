@@ -3,6 +3,7 @@ package org.ramacox.boundary;
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
 import io.smallrye.mutiny.Uni;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -20,6 +21,7 @@ public class ProductResource {
 
 
      @GET
+     @RolesAllowed("user")
      public Uni<Response> getProducts() {
          return ProductPanache.listAll()
                  .onItem().transform(products -> Response.ok(products).build());
@@ -27,6 +29,7 @@ public class ProductResource {
 
     @GET
     @Path("{id}")
+    @RolesAllowed("user")
     public Uni<Response> getSingleProduct(@PathParam("id") Long id) {
         return ProductPanache.findById(id)
                 .onItem().ifNotNull().transform(product -> Response.ok(product).build())
@@ -34,6 +37,7 @@ public class ProductResource {
     }
 
     @POST
+    @RolesAllowed("user")
     public Uni<Response> addProduct(ProductPanache product) {
          return Panache
                  .withTransaction(product::persist)
@@ -42,6 +46,7 @@ public class ProductResource {
 
     @DELETE
     @Path("{id}")
+    @RolesAllowed("user")
     public Uni<Response> delete(@PathParam("id") Long id) {
          return ProductPanache
                  .deleteProduct(id)
@@ -50,6 +55,7 @@ public class ProductResource {
     }
 
     @PUT
+    @RolesAllowed("user")
     public Uni<Response> update(ProductPanache product) {
         if (product == null || product.description == null) {
             throw new WebApplicationException("Product description was not set on request.", 422);
