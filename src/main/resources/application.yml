@@ -44,7 +44,7 @@
       devservices:
         enabled: true
         keycloak-x-image: true
-        image-name: quay.io/keycloak/keycloak:26.2.4
+        image-name: quay.io/keycloak/keycloak:26.3.1
         shared: true
         port: 8282
         service-name: keycloak
