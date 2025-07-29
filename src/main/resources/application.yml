@@ -13,6 +13,8 @@
         port: 5432
         password: quarkus
         username: postgres
+        container-memory: 128M
+        container-memory-limit: 512M
       password: quarkus
       username: postgres
       reactive:
@@ -44,11 +46,13 @@
       devservices:
         enabled: true
         keycloak-x-image: true
-        image-name: quay.io/keycloak/keycloak:26.3.1
+        image-name: quay.io/keycloak/keycloak:26.3.2
         shared: true
         port: 8282
         service-name: keycloak
         show-logs: true
+        container-memory: 128M
+        container-memory-limit: 512M
 
 ###################
 # PRODUCTION
