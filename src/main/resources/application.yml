@@ -52,7 +52,8 @@
         service-name: keycloak
         show-logs: true
         container-memory: 128M
-        container-memory-limit: 512M
+        container-memory-limit:
+        realm-path: quarkus-realm.json
 
 ###################
 # PRODUCTION
